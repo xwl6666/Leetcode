@@ -57,7 +57,7 @@ public:
 
 **示例 1：**
 
-![img](https://gitee.com/xwl66/leetcode/raw/master/image/剑指 Offer 35-e1.png)
+![img](https://gitee.com/xwl66/leetcode/raw/master/image/jianzhi Offer 35-e1.png)
 
 ```
 输入：head = [[7,null],[13,0],[11,4],[10,2],[1,0]]
@@ -66,7 +66,7 @@ public:
 
 **示例 2：**
 
-![img](https://gitee.com/xwl66/leetcode/raw/master/image/剑指 Offer 35-e2.png)
+![img](https://gitee.com/xwl66/leetcode/raw/master/image/jianzhi Offer 35-e2.png)
 
 ```
 输入：head = [[1,1],[2,1]]
@@ -75,7 +75,7 @@ public:
 
 **示例 3：**
 
-![img](https://gitee.com/xwl66/leetcode/raw/master/image/剑指 Offer 35-e3.png)
+![img](https://gitee.com/xwl66/leetcode/raw/master/image/jianzhi Offer 35-e3.png)
 
 ```
 输入：head = [[3,null],[3,0],[3,null]]
