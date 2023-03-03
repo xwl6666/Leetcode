@@ -33,6 +33,8 @@
 
 # other
 solution/template.md
+solution/template_md.md
 solution/loadDir.py
+solution/loadDirAndMd.py
 solution/loadDir.bat
 command.txt
