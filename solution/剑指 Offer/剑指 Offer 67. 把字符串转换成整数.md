@@ -1,6 +1,6 @@
-## 面试题67. 把字符串转换成整数
+## 剑指 Offer 67. 把字符串转换成整数
 
-LeetCode：[面试题67. 把字符串转换成整数](https://leetcode.cn/problems/ba-zi-fu-chuan-zhuan-huan-cheng-zheng-shu-lcof/)，难度：中等。
+LeetCode：[剑指 Offer 67. 把字符串转换成整数](https://leetcode.cn/problems/ba-zi-fu-chuan-zhuan-huan-cheng-zheng-shu-lcof/)，难度：中等。
 
 ### 题解
 

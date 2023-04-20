@@ -1,6 +1,6 @@
-## 面试题13. 机器人的运动范围
+## 剑指 Offer 13. 机器人的运动范围
 
-LeetCode：[面试题13. 机器人的运动范围](https://leetcode.cn/problems/ji-qi-ren-de-yun-dong-fan-wei-lcof/)，难度：中等。
+LeetCode：[剑指 Offer 13. 机器人的运动范围](https://leetcode.cn/problems/ji-qi-ren-de-yun-dong-fan-wei-lcof/)，难度：中等。
 
 ### 题解
 

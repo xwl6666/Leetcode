@@ -1,6 +1,6 @@
-## 面试题61. 扑克牌中的顺子
+## 剑指 Offer 61. 扑克牌中的顺子
 
-LeetCode：[面试题61. 扑克牌中的顺子](https://leetcode.cn/problems/bu-ke-pai-zhong-de-shun-zi-lcof/)，难度：简单。
+LeetCode：[剑指 Offer 61. 扑克牌中的顺子](https://leetcode.cn/problems/bu-ke-pai-zhong-de-shun-zi-lcof/)，难度：简单。
 
 ### 题解
 

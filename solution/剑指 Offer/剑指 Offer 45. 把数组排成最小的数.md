@@ -1,6 +1,6 @@
-## 面试题45. 把数组排成最小的数
+## 剑指 Offer 45. 把数组排成最小的数
 
-LeetCode：[面试题45. 把数组排成最小的数](https://leetcode.cn/problems/ba-shu-zu-pai-cheng-zui-xiao-de-shu-lcof/)，难度：中等。
+LeetCode：[剑指 Offer 45. 把数组排成最小的数](https://leetcode.cn/problems/ba-shu-zu-pai-cheng-zui-xiao-de-shu-lcof/)，难度：中等。
 
 ### 题解
 
