@@ -75,7 +75,7 @@ public:
 
 **示例 1：**
 
-![img](https://gitee.com/xwl66/leetcode/raw/master/image/jianZhiOfferII 013-1626332422-wUpUHT-image.png)
+![img](https://gitee.com/xwl66/leetcode/raw/master/image/jianZhiOfferII013-1626332422-wUpUHT-image.png)
 
 ```
 输入: 
