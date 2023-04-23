@@ -14,25 +14,23 @@ public:
         if(len1 > len2) {
             return false;
         }
-        unordered_map<int, int> pre;
+
+        vector<int> pre(26, 0);
         for(int i : s1) {
-            pre[i] ++;
+            pre[i - 'a'] ++;
         }
         
-        unordered_map<int, int> now;
+        vector<int> now(26, 0);
         for(int i = 0; i < len1; i++) {
-            now[s2[i]] ++;
+            now[s2[i] - 'a'] ++;
         }
         if(now == pre) {
             return true;
         }
 
         for(int i = len1, p; i < len2; i++) {
-            p = s2[i - len1];
-            if(-- now[p] == 0) {
-                now.erase(p);
-            }
-            now[s2[i]] ++;
+            now[s2[i - len1] - 'a'] --;
+            now[s2[i] - 'a'] ++;
             if(now == pre) {
                 return true;
             }

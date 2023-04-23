@@ -1,6 +1,6 @@
-## 3. 无重复字符的最长子串
+## 剑指 Offer II 016. 不含重复字符的最长子字符串
 
-LeetCode：[3. 无重复字符的最长子串](https://leetcode.cn/problems/longest-substring-without-repeating-characters/)，难度：中等。
+LeetCode：[剑指 Offer II 016. 不含重复字符的最长子字符串](https://leetcode.cn/problems/wtcaE1/)，难度：中等。
 
 ### 题解
 
@@ -38,7 +38,7 @@ public:
 
 ### 题目
 
-给定一个字符串 `s` ，请你找出其中不含有重复字符的 **最长子串** 的长度。
+给定一个字符串 `s` ，请你找出其中不含有重复字符的 **最长连续子字符串** 的长度。
 
  
 
@@ -47,7 +47,7 @@ public:
 ```
 输入: s = "abcabcbb"
 输出: 3 
-解释: 因为无重复字符的最长子串是 "abc"，所以其长度为 3。
+解释: 因为无重复字符的最长子字符串是 "abc"，所以其长度为 3。
 ```
 
 **示例 2:**
@@ -55,7 +55,7 @@ public:
 ```
 输入: s = "bbbbb"
 输出: 1
-解释: 因为无重复字符的最长子串是 "b"，所以其长度为 1。
+解释: 因为无重复字符的最长子字符串是 "b"，所以其长度为 1。
 ```
 
 **示例 3:**
@@ -67,11 +67,22 @@ public:
      请注意，你的答案必须是 子串 的长度，"pwke" 是一个子序列，不是子串。
 ```
 
+**示例 4:**
+
+```
+输入: s = ""
+输出: 0
+```
+
  
 
 **提示：**
 
 - `0 <= s.length <= 5 * 10^4`
 - `s` 由英文字母、数字、符号和空格组成
+
+ 
+
+注意：本题与 3 题[3. 无重复字符的最长子串](https://leetcode-cn.com/problems/longest-substring-without-repeating-characters/)相同
 
 
