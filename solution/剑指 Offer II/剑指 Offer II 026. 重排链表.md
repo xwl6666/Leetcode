@@ -1,0 +1,126 @@
+## 剑指 Offer II 026. 重排链表
+
+LeetCode：[剑指 Offer II 026. 重排链表](https://leetcode.cn/problems/LGjMqU/)，难度：中等。
+
+### 题解
+
+#### 代码
+
+```c++
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode() : val(0), next(nullptr) {}
+ *     ListNode(int x) : val(x), next(nullptr) {}
+ *     ListNode(int x, ListNode *next) : val(x), next(next) {}
+ * };
+ */
+class Solution {
+public:
+
+    ListNode* findMid(ListNode* head) {
+        ListNode *fast = head, *low = head;
+
+        while(fast -> next != nullptr && fast -> next -> next != nullptr) {
+            low = low -> next;
+            fast = fast -> next -> next;
+        }
+        return low;
+    }
+
+    ListNode* rev(ListNode* head) {
+        if(head == nullptr || head -> next == nullptr) {
+            return head;
+        }
+        ListNode *idx = new ListNode(-1), *p;
+        while(head != nullptr) {
+            p = head -> next;
+            head -> next = idx -> next;
+            idx -> next = head;
+            head = p;
+        }
+        return idx -> next;
+    }
+
+    void merge(ListNode* l, ListNode* r) {
+        ListNode *p, *q;
+
+        while(l != nullptr && r != nullptr) {
+            p = l -> next, q = r -> next;
+
+            l -> next = r;
+            l = p;
+
+            r -> next = l;
+            r = q;
+        }
+    }
+
+    void reorderList(ListNode* head) {
+        if(head == nullptr || head -> next == nullptr) {
+            return ;
+        }
+
+        ListNode *mid = findMid(head);
+        ListNode *l = head, *r = mid -> next;
+        mid -> next = nullptr;
+        r = rev(r);
+
+        merge(l, r);
+    }
+};
+```
+
+
+
+---
+
+
+
+### 题目
+
+给定一个单链表 `L` 的头节点 `head` ，单链表 `L` 表示为：
+
+` L0 → L1 → … → Ln-1 → Ln `
+请将其重新排列后变为：
+
+```
+L0 → Ln → L1 → Ln-1 → L2 → Ln-2 → …
+```
+
+不能只是单纯的改变节点内部的值，而是需要实际的进行节点交换。
+
+ 
+
+**示例 1:**
+
+![img](https://gitee.com/xwl66/leetcode/raw/master/image/jianZhiOfferII026-1626420311-PkUiGI-image.png)
+
+```
+输入: head = [1,2,3,4]
+输出: [1,4,2,3]
+```
+
+**示例 2:**
+
+![img](https://gitee.com/xwl66/leetcode/raw/master/image/jianZhiOfferII026-1626420320-YUiulT-image.png)
+
+```
+输入: head = [1,2,3,4,5]
+输出: [1,5,2,4,3]
+```
+
+ 
+
+**提示：**
+
+- 链表的长度范围为 `[1, 5 * 10^4]`
+- `1 <= node.val <= 1000`
+
+ 
+
+注意：本题与 143 题[143. 重排链表](https://leetcode-cn.com/problems/reorder-list/ )相同
+
+
