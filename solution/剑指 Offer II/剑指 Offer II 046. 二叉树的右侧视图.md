@@ -1,0 +1,101 @@
+## 剑指 Offer II 046. 二叉树的右侧视图
+
+LeetCode：[剑指 Offer II 046. 二叉树的右侧视图](https://leetcode.cn/problems/WNC0Lk/)，难度：中等。
+
+### 题解
+
+#### 代码
+
+```c++
+/**
+ * Definition for a binary tree node.
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode() : val(0), left(nullptr), right(nullptr) {}
+ *     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
+ *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
+ * };
+ */
+class Solution {
+public:
+
+    int mx;
+    vector<int> res;
+
+    void dfs(TreeNode* root, int cur) {
+        int to = cur + 1;
+        if(to > mx) {
+            mx = to;
+        }
+
+        res[cur] = root -> val;
+        if(root -> left != nullptr) {
+            dfs(root -> left, to);
+        }
+        if(root -> right != nullptr) {
+            dfs(root -> right, to);
+        }
+    }
+
+    vector<int> rightSideView(TreeNode* root) {
+        if(root == nullptr) {
+            return {};
+        }
+        mx = 0;
+        res.resize(101);
+        dfs(root, 0);
+        res.resize(mx);
+        return res;
+    }
+};
+```
+
+
+
+---
+
+
+
+### 题目
+
+给定一个二叉树的 **根节点** `root`，想象自己站在它的右侧，按照从顶部到底部的顺序，返回从右侧所能看到的节点值。
+
+ 
+
+**示例 1:**
+
+![img](https://gitee.com/xwl66/leetcode/raw/master/image/jianZhiOfferII046-tree.jpg)
+
+```
+输入: [1,2,3,null,5,null,4]
+输出: [1,3,4]
+```
+
+**示例 2:**
+
+```
+输入: [1,null,3]
+输出: [1,3]
+```
+
+**示例 3:**
+
+```
+输入: []
+输出: []
+```
+
+ 
+
+**提示:**
+
+- 二叉树的节点个数的范围是 `[0,100]`
+- `-100 <= Node.val <= 100` 
+
+ 
+
+注意：本题与 199 题[199. 二叉树的右视图](https://leetcode-cn.com/problems/binary-tree-right-side-view/)相同
+
+

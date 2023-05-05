@@ -1,0 +1,92 @@
+## 剑指 Offer II 045. 二叉树最底层最左边的值
+
+LeetCode：[剑指 Offer II 045. 二叉树最底层最左边的值](https://leetcode.cn/problems/LwUNpT/)，难度：中等。
+
+### 题解
+
+#### 代码
+
+```c++
+/**
+ * Definition for a binary tree node.
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode() : val(0), left(nullptr), right(nullptr) {}
+ *     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
+ *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
+ * };
+ */
+class Solution {
+public:
+
+    int mx, res;
+
+    void dfs(TreeNode* root, int cur) {
+        int to = cur + 1;
+        if(to > mx) {
+            mx = to;
+            res = root -> val;
+        }
+
+        if(root -> left != nullptr) {
+            dfs(root -> left, to);
+        }
+        if(root -> right != nullptr) {
+            dfs(root -> right, to);
+        }
+    }
+
+    int findBottomLeftValue(TreeNode* root) {
+        mx = 0;
+        dfs(root, 0);
+        return res;
+    }
+};
+```
+
+
+
+---
+
+
+
+### 题目
+
+给定一个二叉树的 **根节点** `root`，请找出该二叉树的 **最底层 最左边** 节点的值。
+
+假设二叉树中至少有一个节点。
+
+ 
+
+**示例 1:**
+
+![img](https://gitee.com/xwl66/leetcode/raw/master/image/jianZhiOfferII045-tree1.jpg)
+
+```
+输入: root = [2,1,3]
+输出: 1
+```
+
+**示例 2:**
+
+![img](https://gitee.com/xwl66/leetcode/raw/master/image/jianZhiOfferII045-tree2.jpg)
+
+```
+输入: [1,2,3,4,null,5,6,null,null,7]
+输出: 7
+```
+
+ 
+
+**提示:**
+
+- 二叉树的节点个数的范围是 `[1,10^4]`
+- `-2^31 <= Node.val <= 2^31 - 1` 
+
+ 
+
+注意：本题与 513 题[513. 找树左下角的值](https://leetcode-cn.com/problems/find-bottom-left-tree-value/)相同
+
+
