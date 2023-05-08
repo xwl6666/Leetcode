@@ -1,0 +1,125 @@
+## 剑指 Offer II 062. 实现前缀树
+
+LeetCode：[剑指 Offer II 062. 实现前缀树](https://leetcode.cn/problems/QC3q1f/)，难度：中等。
+
+### 题解
+
+#### 代码
+
+```c++
+class Trie {
+public:
+    /** Initialize your data structure here. */
+
+    int trie[26][50005];
+    bool flag[50005];
+    int total;
+
+    Trie() {
+        total = 0;
+        memset(trie, 0, sizeof(trie));
+        memset(flag, false, sizeof(flag));
+    }
+    
+    /** Inserts a word into the trie. */
+    void insert(string word) {
+        int root = 0;
+        for(int i = 0, to; i < word.size(); i++) {
+            to = word[i] - 'a';
+            if(!trie[to][root]) {
+                trie[to][root] = ++total;
+                root = trie[to][root];
+            } else {
+                root = trie[to][root];
+            }
+        }
+        flag[root] = true;
+    }
+    
+    /** Returns if the word is in the trie. */
+    bool search(string word) {
+        int root = 0;
+        for(int i = 0, to; i < word.size(); i++) {
+            to = word[i] - 'a';
+            if(!trie[to][root]) {
+                return false;
+            }
+            root = trie[to][root];
+        }
+        return flag[root];
+    }
+    
+    /** Returns if there is any word in the trie that starts with the given prefix. */
+    bool startsWith(string prefix) {
+        int root = 0;
+        for(int i = 0, to; i < prefix.size(); i++) {
+            to = prefix[i] - 'a';
+            if(!trie[to][root]) {
+                return false;
+            }
+            root = trie[to][root];
+        }
+        return true;
+    }
+};
+
+/**
+ * Your Trie object will be instantiated and called as such:
+ * Trie* obj = new Trie();
+ * obj->insert(word);
+ * bool param_2 = obj->search(word);
+ * bool param_3 = obj->startsWith(prefix);
+ */
+```
+
+
+
+---
+
+
+
+### 题目
+
+**[Trie](https://baike.baidu.com/item/字典树/9825209?fr=aladdin)**（发音类似 "try"）或者说 **前缀树** 是一种树形数据结构，用于高效地存储和检索字符串数据集中的键。这一数据结构有相当多的应用情景，例如自动补完和拼写检查。
+
+请你实现 Trie 类：
+
+- `Trie()` 初始化前缀树对象。
+- `void insert(String word)` 向前缀树中插入字符串 `word` 。
+- `boolean search(String word)` 如果字符串 `word` 在前缀树中，返回 `true`（即，在检索之前已经插入）；否则，返回 `false` 。
+- `boolean startsWith(String prefix)` 如果之前已经插入的字符串 `word` 的前缀之一为 `prefix` ，返回 `true` ；否则，返回 `false` 。
+
+ 
+
+**示例：**
+
+```
+输入
+inputs = ["Trie", "insert", "search", "search", "startsWith", "insert", "search"]
+inputs = [[], ["apple"], ["apple"], ["app"], ["app"], ["app"], ["app"]]
+输出
+[null, null, true, false, true, null, true]
+
+解释
+Trie trie = new Trie();
+trie.insert("apple");
+trie.search("apple");   // 返回 True
+trie.search("app");     // 返回 False
+trie.startsWith("app"); // 返回 True
+trie.insert("app");
+trie.search("app");     // 返回 True
+```
+
+ 
+
+**提示：**
+
+- `1 <= word.length, prefix.length <= 2000`
+- `word` 和 `prefix` 仅由小写英文字母组成
+- `insert`、`search` 和 `startsWith` 调用次数 **总计** 不超过 `3 * 10^4` 次
+
+ 
+
+注意：本题与 208 题[208. 实现 Trie (前缀树)](https://leetcode-cn.com/problems/implement-trie-prefix-tree/)相同
+
+
