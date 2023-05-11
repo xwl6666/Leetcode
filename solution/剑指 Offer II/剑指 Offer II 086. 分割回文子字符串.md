@@ -1,0 +1,116 @@
+## 剑指 Offer II 086. 分割回文子字符串
+
+LeetCode：[剑指 Offer II 086. 分割回文子字符串](https://leetcode.cn/problems/M99OJA/)，难度：中等。
+
+### 题解
+
+#### 代码
+
+```c++
+class Solution {
+public:
+
+    bool judge(string ss){
+        int len = (int)ss.size(), mid = len >> 1;
+        for(int i = 0; i < mid; i++) {
+            if(ss[i] != ss[len - i - 1]) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    vector<vector<string>> partition(string s) {
+        vector< vector<string> > res;
+
+        vector<string> v;
+        int len = (int)s.size(), to = 1 << len;
+        for(int i = 0; i < to; i++) {
+            v.clear();
+            string pre = "";
+            bool flag = true;
+            for(int j = 0, now; j < len; j++) {
+                now = i >> j & 1;
+                if(j == 0 && now == 1) {
+                    break;
+                }
+                if(now == 0) {
+                    if(!pre.empty()) {
+                        if(judge(pre)) {
+                            v.push_back(pre);
+                            pre = "";
+                            pre += s[j];
+                        } else {
+                            flag = false;
+                            break;
+                        }
+                    } else {
+                        pre += s[j];
+                    }
+                } else {
+                    pre += s[j];
+                }
+            }
+            if(!pre.empty()) {
+                if(judge(pre)) {
+                    v.push_back(pre);
+                } else {
+                    flag = false;
+                }
+            }
+            if(flag && !v.empty()) {
+                res.push_back(v);
+            }
+        }
+        return res;
+    }
+};
+```
+
+
+
+---
+
+
+
+### 题目
+
+给定一个字符串 `s` ，请将 `s` 分割成一些子串，使每个子串都是 **回文串** ，返回 s 所有可能的分割方案。
+
+**回文串** 是正着读和反着读都一样的字符串。
+
+ 
+
+**示例 1：**
+
+```
+输入：s = "google"
+输出：[["g","o","o","g","l","e"],["g","oo","g","l","e"],["goog","l","e"]]
+```
+
+**示例 2：**
+
+```
+输入：s = "aab"
+输出：[["a","a","b"],["aa","b"]]
+```
+
+**示例 3：**
+
+```
+输入：s = "a"
+输出：[["a"]]
+```
+
+ 
+
+**提示：**
+
+- `1 <= s.length <= 16`
+- `s `仅由小写英文字母组成
+
+ 
+
+注意：本题与 131 题[131. 分割回文串](https://leetcode-cn.com/problems/palindrome-partitioning/)相同
+
+

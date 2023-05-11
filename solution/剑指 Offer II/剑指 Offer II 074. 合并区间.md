@@ -1,41 +1,12 @@
-## 56. 合并区间
+## 剑指 Offer II 074. 合并区间
 
-LeetCode：[56. 合并区间](https://leetcode.cn/problems/merge-intervals/)，难度：中等。
+LeetCode：[剑指 Offer II 074. 合并区间](https://leetcode.cn/problems/SsGoHC/)，难度：中等。
 
 ### 题解
 
 #### 代码
 
-##### 1、排序
-
-```c++
-class Solution {
-public:
-    vector<vector<int>> merge(vector<vector<int>>& intervals) {
-        if((int)intervals.size() <= 1) {
-            return intervals;
-        }
-        vector< vector<int> > res;
-        sort(intervals.begin(), intervals.end(), [](const vector<int> &a, const vector<int> &b) {
-            return a[0] < b[0];
-        });
-
-        for(int i = 1; i < intervals.size(); i++) {
-            if(intervals[i][0] > intervals[i - 1][1]) {
-                res.push_back(intervals[i - 1]);
-            } else {
-                intervals[i][0] = intervals[i - 1][0];
-                intervals[i][1] = max(intervals[i][1], intervals[i - 1][1]);
-            }
-        }
-        res.push_back(intervals.back());
-
-        return res;
-    }
-};
-```
-
-##### 2、差分
+##### 1、差分
 
 ```c++
 class Solution {
@@ -79,6 +50,35 @@ public:
 };
 ```
 
+##### 2、排序
+
+```c++
+class Solution {
+public:
+    vector<vector<int>> merge(vector<vector<int>>& intervals) {
+        if((int)intervals.size() <= 1) {
+            return intervals;
+        }
+        vector< vector<int> > res;
+        sort(intervals.begin(), intervals.end(), [](const vector<int> &a, const vector<int> &b) {
+            return a[0] < b[0];
+        });
+
+        for(int i = 1; i < intervals.size(); i++) {
+            if(intervals[i][0] > intervals[i - 1][1]) {
+                res.push_back(intervals[i - 1]);
+            } else {
+                intervals[i][0] = intervals[i - 1][0];
+                intervals[i][1] = max(intervals[i][1], intervals[i - 1][1]);
+            }
+        }
+        res.push_back(intervals.back());
+
+        return res;
+    }
+};
+```
+
 
 
 
@@ -89,7 +89,7 @@ public:
 
 ### 题目
 
-以数组 `intervals` 表示若干个区间的集合，其中单个区间为 `intervals[i] = [starti, endi]` 。请你合并所有重叠的区间，并返回 *一个不重叠的区间数组，该数组需恰好覆盖输入中的所有区间* 。
+以数组 `intervals` 表示若干个区间的集合，其中单个区间为 `intervals[i] = [start_i, end_i]` 。请你合并所有重叠的区间，并返回一个不重叠的区间数组，该数组需恰好覆盖输入中的所有区间。
 
  
 
@@ -115,6 +115,10 @@ public:
 
 - `1 <= intervals.length <= 10^4`
 - `intervals[i].length == 2`
-- `0 <= starti <= endi <= 10^4`
+- `0 <= start_i <= end_i <= 10^4`
+
+ 
+
+注意：本题与 56 题[56. 合并区间](https://leetcode-cn.com/problems/merge-intervals/)相同
 
 
