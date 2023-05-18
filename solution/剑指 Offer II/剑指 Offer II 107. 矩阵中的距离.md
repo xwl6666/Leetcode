@@ -1,0 +1,102 @@
+## 剑指 Offer II 107. 矩阵中的距离
+
+LeetCode：[剑指 Offer II 107. 矩阵中的距离](https://leetcode.cn/problems/2bCMpM/)，难度：中等。
+
+### 题解
+
+#### 代码
+
+```c++
+class Solution {
+public:
+
+    const int inf = 1e9;
+
+    int nextt[4][2] = {{0, 1}, {1, 0}, {0, -1}, {-1, 0}};
+
+    vector<vector<int>> updateMatrix(vector<vector<int>>& mat) {
+        int n = (int)mat.size(), m = (int)mat[0].size();
+        
+        queue< pair<int, int> >q;
+        vector< vector<int> > res(n, vector<int>(m));
+        for(int i = 0; i < n; i++) {
+            for(int j = 0; j < m; j++) {
+                if(mat[i][j] == 0) {
+                    res[i][j] = 0;
+                    q.push(make_pair(i, j));
+                } else {
+                    res[i][j] = inf;
+                }
+            }
+        }
+
+        pair<int, int> now;
+        while(!q.empty()) {
+            now = q.front(), q.pop();
+            for(int i = 0, x, y, to; i < 4; i++) {
+                x = now.first + nextt[i][0], y = now.second + nextt[i][1];
+                if(x < 0 || x >= n || y < 0 || y >= m || res[x][y] == 0) {
+                    continue;
+                }
+
+                to = res[now.first][now.second] + 1;
+                if(res[x][y] > to) {
+                    res[x][y] = to;
+                    q.push(make_pair(x, y));
+                }
+            }
+        }
+
+        return res;
+    }
+};
+```
+
+
+
+---
+
+
+
+### 题目
+
+给定一个由 `0` 和 `1` 组成的矩阵 `mat` ，请输出一个大小相同的矩阵，其中每一个格子是 `mat` 中对应位置元素到最近的 `0` 的距离。
+
+两个相邻元素间的距离为 `1` 。
+
+ 
+
+**示例 1：**
+
+![img](https://gitee.com/xwl66/leetcode/raw/master/image/jianZhiOfferII107-1626667201-NCWmuP-image.png)
+
+```
+输入：mat = [[0,0,0],[0,1,0],[0,0,0]]
+输出：[[0,0,0],[0,1,0],[0,0,0]]
+```
+
+**示例 2：**
+
+![img](https://gitee.com/xwl66/leetcode/raw/master/image/jianZhiOfferII107-1626667205-xFxIeK-image.png)
+
+```
+输入：mat = [[0,0,0],[0,1,0],[1,1,1]]
+输出：[[0,0,0],[0,1,0],[1,2,1]]
+```
+
+ 
+
+**提示：**
+
+- `m == mat.length`
+- `n == mat[i].length`
+- `1 <= m, n <= 10^4`
+- `1 <= m * n <= 10^4`
+- `mat[i][j] is either 0 or 1.`
+- `mat` 中至少有一个 `0 `
+
+ 
+
+注意：本题与 542 题[542. 01 矩阵](https://leetcode-cn.com/problems/01-matrix/)相同
+
+

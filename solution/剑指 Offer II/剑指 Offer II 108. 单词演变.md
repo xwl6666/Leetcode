@@ -1,0 +1,128 @@
+## 剑指 Offer II 108. 单词演变
+
+LeetCode：[剑指 Offer II 108. 单词演变](https://leetcode.cn/problems/om3reC/)，难度：困难。
+
+### 题解
+
+#### 代码
+
+```c++
+class Solution {
+public:
+
+    bool judge(string s1, string s2) {
+        if((int)s1.size() != (int)s2.size()) {
+            return false;
+        }
+        int cnt = 0;
+        for(int i = 0; i < s1.size(); i++) {
+            if(s1[i] != s2[i]) {
+                cnt ++;
+                if(cnt > 1) {
+                    return false;
+                }
+            }
+        }
+        return cnt == 1;
+    }
+
+    int ladderLength(string beginWord, string endWord, vector<string>& wordList) {
+        int len = (int)wordList.size(), ed = -1;
+        for(int i = 0; i < len; i++) {
+            if(endWord == wordList[i]) {
+                ed = i + 1;
+            }
+        }
+        if(ed == -1) {
+            return 0;
+        }
+
+        vector<int> edge[len + 1];
+        vector<int> bk(len + 1, 0);
+        for(int i = 0; i < len; i++) {
+            if(judge(beginWord, wordList[i])) {
+                edge[0].push_back(i + 1);
+                edge[i + 1].push_back(0);
+            }
+            for(int j = i + 1; j < len; j++) {
+                if(judge(wordList[i], wordList[j])) {
+                    edge[i + 1].push_back(j + 1);
+                    edge[j + 1].push_back(i + 1);
+                }
+            }
+        }
+
+        queue<int> q;
+        q.push(0);
+        bk[0] = 1;
+
+        int now;
+        while(!q.empty()) {
+            now = q.front(), q.pop();
+            if(now == ed) {
+                return bk[now];
+            }
+            for(int to : edge[now]) {
+                if(!bk[to]) {
+                    bk[to] = bk[now] + 1;
+                    q.push(to);
+                }
+            }
+        }
+        return 0;
+    }
+};
+```
+
+
+
+---
+
+
+
+### 题目
+
+在字典（单词列表） `wordList` 中，从单词 `beginWord` 和 `endWord` 的 **转换序列** 是一个按下述规格形成的序列：
+
+- 序列中第一个单词是 `beginWord` 。
+- 序列中最后一个单词是 `endWord` 。
+- 每次转换只能改变一个字母。
+- 转换过程中的中间单词必须是字典 `wordList` 中的单词。
+
+给定两个长度相同但内容不同的单词 `beginWord` 和 `endWord` 和一个字典 `wordList` ，找到从 `beginWord` 到 `endWord` 的 **最短转换序列** 中的 **单词数目** 。如果不存在这样的转换序列，返回 0。
+
+ 
+
+**示例 1：**
+
+```
+输入：beginWord = "hit", endWord = "cog", wordList = ["hot","dot","dog","lot","log","cog"]
+输出：5
+解释：一个最短转换序列是 "hit" -> "hot" -> "dot" -> "dog" -> "cog", 返回它的长度 5。
+```
+
+**示例 2：**
+
+```
+输入：beginWord = "hit", endWord = "cog", wordList = ["hot","dot","dog","lot","log"]
+输出：0
+解释：endWord "cog" 不在字典中，所以无法进行转换。
+```
+
+ 
+
+**提示：**
+
+- `1 <= beginWord.length <= 10`
+- `endWord.length == beginWord.length`
+- `1 <= wordList.length <= 5000`
+- `wordList[i].length == beginWord.length`
+- `beginWord`、`endWord` 和 `wordList[i]` 由小写英文字母组成
+- `beginWord != endWord`
+- `wordList` 中的所有字符串 **互不相同**
+
+ 
+
+注意：本题与 127 题[127. 单词接龙](https://leetcode-cn.com/problems/word-ladder/)相同
+
+
